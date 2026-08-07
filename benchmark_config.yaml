@@ -1,0 +1,383 @@
+benchmark:
+  name: "端侧模型综合评测"
+  version: "2026Q3"
+  output_dir: "./results"
+
+models:
+  # ── model 仓库模型（aria-engine 通道，从 https://huggingface.co/ariacompute 下载 Aria bundle）──
+  - name: "qwen3-0.6b-aria"
+    family: "qwen"
+    source: "ariacompute/Qwen3-0.6B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "qwen3-1.7b-aria"
+    family: "qwen"
+    source: "ariacompute/Qwen3-1.7B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "qwen2.5-0.5b-aria"
+    family: "qwen"
+    source: "ariacompute/Qwen2.5-0.5B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "qwen2.5-1.5b-aria"
+    family: "qwen"
+    source: "ariacompute/Qwen2.5-1.5B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma3-1b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-3-1b-pt"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma3-4b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-3-4b-pt"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma3-12b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-3-12b-pt"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma3n-e2b-e4b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-3n-e2b-e4b-pt"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma-2-2b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-2-2b"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "gemma2-9b-aria"
+    family: "gemma"
+    source: "ariacompute/gemma-2-9b"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "lfm-1b-aria"
+    family: "lfm"
+    source: "ariacompute/LFM-1B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "lfm-3b-aria"
+    family: "lfm"
+    source: "ariacompute/LFM-3B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "bonsai-1.7b-aria"
+    family: "bonsai"
+    source: "ariacompute/Bonsai-1.7B"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "inkling-aria"
+    family: "inkling"
+    source: "ariacompute/Inkling"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "lingbot-aria"
+    family: "lingbot"
+    source: "ariacompute/LingBot"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "nanbeige-aria"
+    family: "nanbeige"
+    source: "ariacompute/Nanbeige"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "openpi-aria"
+    family: "openpi"
+    source: "ariacompute/OpenPI"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  - name: "openvla-aria"
+    family: "openvla"
+    source: "ariacompute/OpenVLA"
+    engine: "aria"
+    quantizations: ["q4_channel", "q3.26_channel", "q8_channel"]
+    max_context: 32768
+
+  # ── model 仓库模型（原生引擎通道，评测对比基线）──
+  # Qwen 家族 — llama.cpp (GGUF, 阿里官方推荐端侧方案)
+  - name: "qwen3-0.6b-native"
+    family: "qwen"
+    source: "Qwen/Qwen3-0.6B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "qwen3-0.6b-aria"
+
+  - name: "qwen3-1.7b-native"
+    family: "qwen"
+    source: "Qwen/Qwen3-1.7B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "qwen3-1.7b-aria"
+
+  - name: "qwen2.5-0.5b-native"
+    family: "qwen"
+    source: "Qwen/Qwen2.5-0.5B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "qwen2.5-0.5b-aria"
+
+  - name: "qwen2.5-1.5b-native"
+    family: "qwen"
+    source: "Qwen/Qwen2.5-1.5B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "qwen2.5-1.5b-aria"
+
+  # Gemma 家族 — llama.cpp (GGUF, Google 官方端侧支持)
+  - name: "gemma3-1b-native"
+    family: "gemma"
+    source: "google/gemma-3-1b-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma3-1b-aria"
+
+  - name: "gemma3-4b-native"
+    family: "gemma"
+    source: "google/gemma-3-4b-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma3-4b-aria"
+
+  - name: "gemma3-12b-native"
+    family: "gemma"
+    source: "google/gemma-3-12b-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma3-12b-aria"
+
+  - name: "gemma3n-e2b-e4b-native"
+    family: "gemma"
+    source: "google/gemma-3n-E4B-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma3n-e2b-e4b-aria"
+
+  - name: "gemma-2-2b-native"
+    family: "gemma"
+    source: "google/gemma-2-2b-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma-2-2b-aria"
+
+  - name: "gemma2-9b-native"
+    family: "gemma"
+    source: "google/gemma-2-9b-it"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "gemma2-9b-aria"
+
+  # LFM 家族 — transformers (Liquid Neural Network, HF 原生支持)
+  - name: "lfm-1b-native"
+    family: "lfm"
+    source: "LiquidAI/LFM2-350M"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+    compare_with: "lfm-1b-aria"
+
+  - name: "lfm-3b-native"
+    family: "lfm"
+    source: "LiquidAI/LFM2-2.6B"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+    compare_with: "lfm-3b-aria"
+
+  # Bonsai 家族 — llama.cpp (标准 Transformer LLM)
+  - name: "bonsai-1.7b-native"
+    family: "bonsai"
+    source: "prism-ml/Bonsai-1.7B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "bonsai-1.7b-aria"
+
+  # Inkling 家族 — llama.cpp (标准小型 LLM)
+  - name: "inkling-native"
+    family: "inkling"
+    source: "thinkingmachines/Inkling-Small"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "inkling-aria"
+
+  # LingBot 家族 — transformers (VLA 模型，需要特定架构)
+  - name: "lingbot-native"
+    family: "lingbot"
+    source: "robbyant/lingbot-vla-v2-6b"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+    compare_with: "lingbot-aria"
+
+  # Nanbeige 家族 — llama.cpp (标准中文 LLM)
+  - name: "nanbeige-native"
+    family: "nanbeige"
+    source: "Nanbeige/Nanbeige4.2-3B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+    compare_with: "nanbeige-aria"
+
+  # OpenPI 家族 — transformers (VLA 模型, LeRobot pipeline)
+  - name: "openpi-native"
+    family: "openpi"
+    source: "lerobot/pi0_base"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+    compare_with: "openpi-aria"
+
+  # OpenVLA 家族 — transformers (VLA 模型, Prismatic 架构)
+  - name: "openvla-native"
+    family: "openvla"
+    source: "openvla/openvla-7b"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+    compare_with: "openvla-aria"
+
+  # ── 非仓库端侧模型（仅原生引擎通道） ──
+  # MiniCPM — llama.cpp (OpenBMB 官方 GGUF 支持)
+  - name: "minicpm3-4b-native"
+    family: "minicpm"
+    source: "openbmb/MiniCPM3-4B"
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+
+  # DeepSeek — transformers (MLA 注意力，原生 HF 适配)
+  - name: "deepseek-v2-lite-native"
+    family: "deepseek"
+    source: "deepseek-ai/DeepSeek-V2-Lite-Chat"
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 131072
+
+  # Vlx-Seek — transformers (多模态 VLM)
+  - name: "vlx-seek-native"
+    family: "vlx_seek"
+    source: "vlx-seek/vlx-seek-7b"  # 待确认 HF 路径
+    engine: "transformers"
+    quantizations: ["fp16", "int8"]
+    max_context: 32768
+
+  # Step-Edge — llama.cpp (StepFun 端侧 GGUF)
+  - name: "step-edge-native"
+    family: "step_edge"
+    source: "stepfun-ai/Step-Edge-Chat"  # 待确认 HF 路径
+    engine: "llama_cpp"
+    quantizations: ["q4_k_m", "q8_0"]
+    max_context: 32768
+
+tasks:
+  academic:
+    - mmlu
+    - gsm8k
+    - ceval
+    - humaneval
+  longcontext:
+    - needle_in_haystack:
+        context_lengths: [4096, 8192, 16384, 32768, 65536, 131072]
+        depth_percent: [0, 10, 20, 50, 80, 90, 100]
+  instruction:
+    - ifeval
+
+hardware:
+  targets:
+    - name: "local"
+      type: "x86-cpu"
+      desc: "当前机器，Phase 3 唯一目标"
+
+metrics:
+  capability:
+    - mmlu_acc
+    - gsm8k_exact_match
+    - ceval_acc
+    - humaneval_pass_at_1
+    - needle_accuracy
+    - ifeval_strict_acc
+  performance:
+    - ttft_ms
+    - tokens_per_second
+    - peak_memory_mb
+    - model_size_mb
+    - power_watts
+
+# ── 多引擎配置 ──
+engines:
+  aria:
+    source: "https://github.com/ariacompute/engine"
+    release: "latest"
+    binary: "aria-engine"
+    version: ">=0.1.0"
+    timeout_seconds: 3600
+    description: "Aria Hadamard+Lloyd-Max 量化引擎"
+  llama_cpp:
+    source: "https://github.com/ggerganov/llama.cpp"
+    release: "latest"
+    binary: "llama-cli"
+    version: ">=b4000"
+    timeout_seconds: 3600
+    description: "llama.cpp GGUF 推理引擎"
+  transformers:
+    source: "https://github.com/huggingface/transformers"
+    version: ">=4.40.0"
+    timeout_seconds: 3600
+    description: "HuggingFace Transformers 原生推理"
+
+scoring:
+  capability_weight: 0.40
+  efficiency_weight: 0.25
+  longcontext_weight: 0.10
+  instruction_weight: 0.05
+  multimodal_weight: 0.15   # 暂缺（MMMU 延后）
+  deploy_weight: 0.05        # 暂缺
