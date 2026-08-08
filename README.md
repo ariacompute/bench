@@ -40,7 +40,7 @@ bash scripts/run_benchmark.sh
 
 | Engine | Supported models | Notes |
 |--------|------------------|-------|
-| `aria` | All 9 repo families | Aria Hadamard+Lloyd-Max quantization (q4/q3.26/q8 channel) |
+| `aria` | All 9 repo families | Aria Hadamard+Lloyd-Max quantization (q4/q3.26/q8) |
 | `llama_cpp` | Qwen / Gemma / Bonsai / Inkling / Nanbeige / MiniCPM / Step-Edge | GGUF format, mainstream edge deployment |
 | `transformers` | LFM / LingBot / OpenPI / OpenVLA / DeepSeek / Vlx-Seek | HuggingFace native inference (VLA/LNN/MLA architectures) |
 

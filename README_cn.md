@@ -40,7 +40,7 @@ bash scripts/run_benchmark.sh
 
 | 引擎 | 适用模型 | 说明 |
 |------|----------|------|
-| `aria` | 全部 9 repo 家族 | Aria Hadamard+Lloyd-Max 量化（q4/q3.26/q8 channel） |
+| `aria` | 全部 9 repo 家族 | Aria Hadamard+Lloyd-Max 量化（q4/q3.26/q8） |
 | `llama_cpp` | Qwen / Gemma / Bonsai / Inkling / Nanbeige / MiniCPM / Step-Edge | GGUF 格式，端侧主流方案 |
 | `transformers` | LFM / LingBot / OpenPI / OpenVLA / DeepSeek / Vlx-Seek | HuggingFace 原生推理（VLA/LNN/MLA 架构） |
 
